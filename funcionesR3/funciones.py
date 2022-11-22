@@ -95,7 +95,10 @@ def grafica(delimitador):
         function_x = sp.sympify('0*t')
         function_y = sp.sympify('t')
         function_z = sp.sympify(aval*t**2+bval*t)
-        interval = np.arange(y+1)
+        if (Y < 0):
+            interval = np.arange(Y, 1)
+        else:
+            interval = np.arange(Y + 1)
         x_values = [function_x.subs(t, value) for value in interval]
         y_values = [function_y.subs(t, value) for value in interval]
         z_values = [function_z.subs(t, value) for value in interval]
@@ -126,7 +129,8 @@ def grafica(delimitador):
         function_x2 = sp.sympify(vx+vdx*t)
         function_y2 = sp.sympify(vy+vdy*t)
         function_z2 = sp.sympify(vz+vdz*t)
-        interval2 = np.arange(y1+10)
+        interval2 = np.arange(-20, 20)
+        #interval2 = np.arange(y1 - 10, y1 + 10)
         x2_values = [function_x2.subs(t, value) for value in interval2]
         y2_values = [function_y2.subs(t, value) for value in interval2]
         z2_values = [function_z2.subs(t, value) for value in interval2]
@@ -140,9 +144,9 @@ def grafica(delimitador):
         i, err = quad(f, c, Y)
         print("\nLa longitud de arco de la parábola es: ",i)
 
-        ax.plot(0,0,0,'bo', c='black')
-        ax.plot(vx,vy,vz,'bo', c='purple')
-        ax.plot(0,Y,0,'bo', c='brown')
+        ax.plot(0,0,0,'bo', color='black')
+        ax.plot(vx,vy,vz,'bo', color='r')
+        ax.plot(0,Y,0,'bo', color='black')
         plt.show()
 
     def grafica_x(h,y,x):
@@ -180,7 +184,10 @@ def grafica(delimitador):
         function_x = sp.sympify('t')
         function_y = sp.sympify('0*t')
         function_z = sp.sympify(aval * t ** 2 + bval * t)
-        interval = np.arange(x + 1)
+        if (X < 0):
+            interval = np.arange(X, 1)
+        else:
+            interval = np.arange(X + 1)
         x_values = [function_x.subs(t, value) for value in interval]
         y_values = [function_y.subs(t, value) for value in interval]
         z_values = [function_z.subs(t, value) for value in interval]
@@ -211,7 +218,8 @@ def grafica(delimitador):
         function_x2 = sp.sympify(vx + vdx * t)
         function_y2 = sp.sympify(vy + vdy * t)
         function_z2 = sp.sympify(vz + vdz * t)
-        interval2 = np.arange(x1 + 10)
+        interval2 = np.arange(-20, 20)
+        #interval2 = np.arange(x1 + 10)
         x2_values = [function_x2.subs(t, value) for value in interval2]
         y2_values = [function_y2.subs(t, value) for value in interval2]
         z2_values = [function_z2.subs(t, value) for value in interval2]
@@ -224,9 +232,9 @@ def grafica(delimitador):
         i, err = quad(f,c,X)
         print("\nLa longitud de arco de la parábola es: ", i)
 
-        ax.plot(0, 0, 0, 'bo', c='black')
-        ax.plot(vx, vy, vz, 'bo', c='purple')
-        ax.plot(X, 0, 0, 'bo', c='brown')
+        ax.plot(0, 0, 0, 'bo', color='black')
+        ax.plot(vx, vy, vz, 'bo', color='r')
+        ax.plot(X, 0, 0, 'bo', color='black')
         plt.show()
 
     def grafica_xy(h,y,x):
@@ -284,13 +292,10 @@ def grafica(delimitador):
         if(x1 < 0):
             if(y2 < 0):
                 interval = np.arange(Y,1)
-                print(interval)
             else:
                 interval = np.arange(Y+1)
-                print(interval)
         elif(y2 < 0):
             interval = np.arange(Y,1)
-            print(interval)
         else:
             interval = np.arange(Y+1)
         x_values = [function_x.subs(t, value) for value in interval]
@@ -321,7 +326,8 @@ def grafica(delimitador):
         function_x2 = sp.sympify(vx + vdx * t)
         function_y2 = sp.sympify(vy + vdy * t)
         function_z2 = sp.sympify(vz + vdz * t)
-        interval2 = np.arange(y1+15)
+        interval2 = np.arange(-20, 20)
+        #interval2 = np.arange(y1+15)
         x2_values = [function_x2.subs(t, value) for value in interval2]
         y2_values = [function_y2.subs(t, value) for value in interval2]
         z2_values = [function_z2.subs(t, value) for value in interval2]
@@ -335,14 +341,48 @@ def grafica(delimitador):
         i, err = quad(f,c,Y)
         print("\nLa longitud de arco de la parábola es: ",i)
 
-        ax.plot(0, 0, 0, 'bo', c='black')
-        ax.plot(vx, vy, vz, 'bo', c='purple')
-        ax.plot(x1, Y, 0, 'bo', c='brown')
+        ax.plot(0, 0, 0, 'bo', color='black')
+        ax.plot(vx, vy, vz, 'bo', color='r')
+        ax.plot(x1, Y, 0, 'bo', color='black')
+        plt.show()
+
+    def recta(h,y,x):
+        h=h
+        x=x
+        y=y
+        v=[x,y,h]
+        vector=[0,0,10]
+        start=[0,0,0]
+        print("\nEn este caso, no existe ningún tiro parabólico, sería un tiro vertical sobre el origen hasta la altura ingresada")
+
+        #para la recta tangente
+        print("\nEn este caso la recta tangente sería z=h")
+
+        # para la longitud del arco
+        i = h*2
+        print("\nLa longitud del tiro vertical es de: ", i)
+
+        #graficamos
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+        ax.quiver(start[0],start[1],start[2],vector[0],vector[1],vector[2],color='blue')
+        ax.plot(0, 0, 0, 'bo', color='black')
+        #z=sp.Symbol('z')
+        #eq = 0 * z + 10
+        #ax.plot_surface(eq)
+        ax.view_init(10,10)
+        ax.set_title('Tiro Vertical')
+        ax.set_xlim([-10,10])
+        ax.set_ylim([-10, 10])
+        ax.set_zlim([0, 15])
+        ax.set_xlabel('x', labelpad=20)
+        ax.set_ylabel('y', labelpad=20)
+        ax.set_zlabel('z', labelpad=20)
         plt.show()
 
     if (x == 0):
         if(y == 0):
-            print("\nDebido a que el punto de impacto es el mismo del origen, nunca hubo ningún tiro\n")
+            recta(h, y, x)
         else:
             grafica_y(h, y, x)
     elif (y == 0):
