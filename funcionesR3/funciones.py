@@ -350,31 +350,35 @@ def grafica(delimitador):
         h=h
         x=x
         y=y
-        v=[x,y,h]
-        vector=[0,0,10]
-        start=[0,0,0]
+        h_2=h*h
+        h2=2*h
+        h2_2=h2*h2
         print("\nEn este caso, no existe ningún tiro parabólico, sería un tiro vertical sobre el origen hasta la altura ingresada")
 
-        #para la recta tangente
-        print("\nEn este caso la recta tangente sería z=h")
+        nrow1 = [h_2, h]
+        nrow2 = [h2_2, h2]
+        nmat = np.array([nrow1, nrow2])
+        cons = np.array([h, 0])
+        answer = linalg.solve(nmat, cons)
+        aval = answer[0]
+        bval = answer[1]
+        print(aval,bval)
+        print("\nLa ecuación de movimiento es: (0, 0, ",aval,"t^2 + ",bval,"t")
 
         # para la longitud del arco
-        i = h*2
-        print("\nLa longitud del tiro vertical es de: ", i)
+        print("\nLa longitud del tiro vertical es de: ", h)
 
         #graficamos
         fig = plt.figure()
-        ax = fig.add_subplot(111, projection='3d')
-        ax.quiver(start[0],start[1],start[2],vector[0],vector[1],vector[2],color='blue')
-        ax.plot(0, 0, 0, 'bo', color='black')
-        #z=sp.Symbol('z')
-        #eq = 0 * z + 10
-        #ax.plot_surface(eq)
+        ax = plt.axes(projection='3d')
+        ax.plot(0, 0, 0, 'bo', c='black')
+        ax.plot(0, 0, h, 'bo', c='purple')
+        ax.plot([0, 0], [0, 0], [0, h])
         ax.view_init(10,10)
         ax.set_title('Tiro Vertical')
         ax.set_xlim([-10,10])
         ax.set_ylim([-10, 10])
-        ax.set_zlim([0, 15])
+        ax.set_zlim([0, 25])
         ax.set_xlabel('x', labelpad=20)
         ax.set_ylabel('y', labelpad=20)
         ax.set_zlabel('z', labelpad=20)
