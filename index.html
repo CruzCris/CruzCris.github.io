@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculador de Ecuaciones Diferenciales de Orden 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="problema-container">
+            <h3 class="problema-title">Calculadora de Ec. Dif. de Segundo Orden</h3>
+            <h4>Para calcular la solución general ingrese los coeficientes de la ecuación diferencial y de click en CONTINUAR</h4>
+            <div class="problema-content">
+                <input class="problema-input" type="text" id="coeficiente1" placeholder="Coeficiente de m^2">
+                <input class="problema-input" type="text" id="coeficiente2" placeholder="Coeficiente de m">
+                <input class="problema-input" type="text" id="coeficiente3" placeholder="Coeficiente independiente">
+                <button class="problema-button" type="button" onclick="validarDatos()">Continuar</button>              
+                <input class="problema-output" id="p1-output" placeholder="Ecuacion Caracteristica..." readonly>
+                <input class="problema-output" id="p2-output" placeholder="Raices" readonly>
+                <input class="problema-output" id="p3-output" placeholder="Soluciones l.i..." readonly>
+                <input class="problema-output" id="p4-output" placeholder="Solucion General..." readonly>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
